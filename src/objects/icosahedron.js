@@ -16,8 +16,8 @@ export function createIcosahedron() {
   const wireframeMaterial = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     wireframe: true,
-    transparent: true,
-    opacity: 0.15,
+    // transparent: true,
+    // opacity: 0.15,
   });
 
   const solidMesh = new THREE.Mesh(geometry, solidMaterial);
