@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
 export function createHemisphereLight() {
-  const skyColor = 0x0099ff;
-  const groundColor = 0xaa5500;
-  const intensity = 1;
+  const skyColor = 0x001133;
+  const groundColor = 0x220022;
+  const intensity = 2;
 
   return new THREE.HemisphereLight(skyColor, groundColor, intensity);
 }
