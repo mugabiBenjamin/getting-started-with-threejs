@@ -5,7 +5,6 @@ import { createScene } from './core/scene.js';
 import { createControls } from './core/controls.js';
 import { startAnimationLoop } from './core/loop.js';
 import { handleWindowResize } from './core/resize.js';
-import { applyEnvironmentMap } from './core/environment.js';
 import { createIcosahedron } from './objects/icosahedron.js';
 import { createStarField } from './objects/particles.js';
 import { createHemisphereLight } from './lights/hemi.js';
@@ -20,7 +19,6 @@ const scene = createScene();
 const controls = createControls(camera, renderer.domElement);
 
 scene.background = new THREE.Color(0x000008);
-applyEnvironmentMap(renderer, scene);
 
 const { solidMesh, wireframeMesh } = createIcosahedron();
 scene.add(solidMesh);
