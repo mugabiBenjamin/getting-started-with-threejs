@@ -9,6 +9,8 @@ import { createIcosahedron } from './objects/icosahedron.js';
 import { createStarField } from './objects/particles.js';
 import { createHemisphereLight } from './lights/hemi.js';
 import { createPointLight } from './lights/point.js';
+import { handleMouseMove } from './interaction/mouse.js';
+import { handleKeyboardToggles } from './interaction/keyboard.js';
 
 const renderer = createRenderer();
 const camera = createCamera();
@@ -17,8 +19,8 @@ const controls = createControls(camera, renderer.domElement);
 
 scene.background = new THREE.Color(0x000008);
 
-const icosahedron = createIcosahedron();
-scene.add(icosahedron);
+const { solidMesh, wireframeMesh } = createIcosahedron();
+scene.add(solidMesh);
 
 const starField = createStarField();
 scene.add(starField);
@@ -30,4 +32,6 @@ const pointLight = createPointLight();
 scene.add(pointLight);
 
 handleWindowResize(camera, renderer);
-startAnimationLoop(renderer, scene, camera, controls, icosahedron, pointLight);
+handleMouseMove();
+handleKeyboardToggles(wireframeMesh);
+startAnimationLoop(renderer, scene, camera, controls, solidMesh, pointLight);

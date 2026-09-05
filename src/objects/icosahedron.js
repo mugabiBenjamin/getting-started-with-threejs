@@ -27,5 +27,5 @@ export function createIcosahedron() {
 
   solidMesh.add(wireframeMesh);
 
-  return solidMesh;
+  return { solidMesh, wireframeMesh };
 }
