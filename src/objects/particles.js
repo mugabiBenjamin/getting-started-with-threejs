@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 const STAR_COUNT = 2000;
 const STAR_SPREAD = 200;
-const STAR_SIZE = 0.25;
+const STAR_SIZE = 0.5;
 
 const STAR_COLOUR_PALETTE = [
   new THREE.Color(0xffffff),
@@ -11,6 +11,30 @@ const STAR_COLOUR_PALETTE = [
   new THREE.Color(0xc8b8ff),
   new THREE.Color(0xe0f0ff),
 ];
+
+function createCircleTexture() {
+  const canvasSize = 64;
+  const canvas = document.createElement('canvas');
+  canvas.width = canvasSize;
+  canvas.height = canvasSize;
+
+  const context = canvas.getContext('2d');
+  const centreX = canvasSize / 2;
+  const centreY = canvasSize / 2;
+  const radius = canvasSize / 2;
+
+  const gradient = context.createRadialGradient(centreX, centreY, 0, centreX, centreY, radius);
+  gradient.addColorStop(0, 'rgba(255,255,255,1)');
+  gradient.addColorStop(0.4, 'rgba(255,255,255,0.8)');
+  gradient.addColorStop(1, 'rgba(255,255,255,0)');
+
+  context.fillStyle = gradient;
+  context.beginPath();
+  context.arc(centreX, centreY, radius, 0, Math.PI * 2);
+  context.fill();
+
+  return new THREE.CanvasTexture(canvas);
+}
 
 export function createStarField() {
   const positions = new Float32Array(STAR_COUNT * 3);
@@ -38,12 +62,17 @@ export function createStarField() {
   starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   starGeometry.setAttribute('color', new THREE.BufferAttribute(colours, 3));
 
+  const circleTexture = createCircleTexture();
+
   const starMaterial = new THREE.PointsMaterial({
     size: STAR_SIZE,
     sizeAttenuation: true,
     transparent: true,
     opacity: 0.8,
     vertexColors: true,
+    map: circleTexture,
+    alphaTest: 0.01,
+    depthWrite: false,
   });
 
   return new THREE.Points(starGeometry, starMaterial);
