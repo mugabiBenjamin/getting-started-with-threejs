@@ -7,7 +7,7 @@ const PULSE_BASE_SCALE = 1.0;
 const PULSE_AMPLITUDE = 0.08;
 const MOUSE_LERP_SPEED = 0.05;
 
-export function startAnimationLoop(renderer, scene, camera, controls, animatedMesh, pointLight) {
+export function startAnimationLoop(renderer, scene, camera, controls, animatedMesh, pointLight, composer) {
   let autoRotationAngle = 0;
 
   function animate(elapsedTime = 0) {
@@ -31,7 +31,7 @@ export function startAnimationLoop(renderer, scene, camera, controls, animatedMe
     animatePointLight(pointLight, elapsedTime);
 
     controls.update();
-    renderer.render(scene, camera);
+    composer.render();
   }
 
   animate();
