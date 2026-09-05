@@ -5,14 +5,19 @@ export function createIcosahedron() {
   const detail = 20;
   const geometry = new THREE.IcosahedronGeometry(radius, detail);
 
-  const solidMaterial = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
+  const solidMaterial = new THREE.MeshPhysicalMaterial({
+    color: 0x0088ff,
     flatShading: true,
+    metalness: 0.6,
+    roughness: 0.3,
+    reflectivity: 0.8,
   });
 
   const wireframeMaterial = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     wireframe: true,
+    transparent: true,
+    opacity: 0.15,
   });
 
   const solidMesh = new THREE.Mesh(geometry, solidMaterial);
