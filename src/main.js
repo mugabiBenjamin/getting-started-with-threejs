@@ -3,6 +3,7 @@ import { createCamera } from './core/camera.js';
 import { createScene } from './core/scene.js';
 import { createControls } from './core/controls.js';
 import { startAnimationLoop } from './core/loop.js';
+import { handleWindowResize } from './core/resize.js';
 import { createIcosahedron } from './objects/icosahedron.js';
 import { createHemisphereLight } from './lights/hemi.js';
 
@@ -17,4 +18,5 @@ scene.add(icosahedron);
 const hemisphereLight = createHemisphereLight();
 scene.add(hemisphereLight);
 
-startAnimationLoop(renderer, scene, camera, controls);
+handleWindowResize(camera, renderer);
+startAnimationLoop(renderer, scene, camera, controls, icosahedron);
