@@ -26,7 +26,7 @@ An interactive 3D scene built with Three.js - no bundler, no build step. Loads d
 
 No install required. Serve the project root with any static file server, for example:
 
-Then open `http://localhost:8000` (or whichever port your server uses).
+Use the `Go Live Server` extension in VS Code to serve the project root
 
 > Opening `index.html` directly as a `file://` URL will not work - browsers block ES module imports on the file protocol.
 
@@ -39,7 +39,6 @@ src/
   core/
     camera.js           PerspectiveCamera setup
     controls.js         OrbitControls with damping
-    environment.js      PMREMGenerator IBL from RoomEnvironment
     loop.js             requestAnimationFrame loop
     renderer.js         WebGLRenderer setup
     resize.js           Window resize handler
